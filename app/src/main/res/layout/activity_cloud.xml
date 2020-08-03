@@ -26,6 +26,14 @@
         android:layout_gravity="center"
         android:layout_marginTop="20dp"/>
 
+<!--    <EditText-->
+<!--        android:id="@+id/HasilCloud"-->
+<!--        android:layout_width="350dp"-->
+<!--        android:layout_height="380dp"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:layout_marginTop="20dp">-->
+<!--    </EditText>-->
+
     <Button
         android:id="@+id/btnIntentHasil"
         android:layout_width="250dp"
