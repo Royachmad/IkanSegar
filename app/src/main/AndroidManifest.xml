@@ -2,6 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.ikanlaut">
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
     <application
         android:allowBackup="true"
         android:hardwareAccelerated="false"
@@ -11,7 +16,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".Tentang"></activity>
+        <activity android:name=".HasilActivity"></activity>
+        <activity android:name=".CloudActivity" />
+        <activity android:name=".Tentang" />
         <activity android:name=".proses" />
         <activity android:name=".Beranda" />
         <activity android:name=".MainActivity">
