@@ -71,17 +71,12 @@ public class proses extends AppCompatActivity {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
             final Bitmap imageBitmap = (Bitmap) extras.get("data");
-            Uri imageuri = getImageUri(getApplicationContext(),imageBitmap);
-            performCrop(imageuri);
-        }else if(requestCode == PIC_CROP){
-            Bundle extras = data.getExtras();
-            Bitmap thePic = extras.getParcelable("data");
-            if(flag == 1){
-                imvGambarMata.setImageBitmap(thePic);
-                fotoMata = thePic;
-                cekMata = 1;
-                flag = 0;
-            }
+//            Uri imageuri = getImageUri(getApplicationContext(),imageBitmap);
+//            performCrop(imageuri);
+            imvGambarMata.setImageBitmap(imageBitmap);
+            fotoMata = imageBitmap;
+            cekMata = 1;
+            flag = 0;
         };
     }
 
