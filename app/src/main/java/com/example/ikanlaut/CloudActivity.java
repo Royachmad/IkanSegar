@@ -16,7 +16,7 @@ public class CloudActivity extends AppCompatActivity {
 
     ImageView imvhasilCloud;
     Button btnHasil;
-    Bitmap fotoMata, fotoInsang;
+    Bitmap fotoMata;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,10 +29,6 @@ public class CloudActivity extends AppCompatActivity {
         fotoMata = BitmapFactory.decodeByteArray(
                     getIntent().getByteArrayExtra("Foto Mata"),0,getIntent().getByteArrayExtra("Foto Mata").length);
 
-        fotoInsang = BitmapFactory.decodeByteArray(
-                getIntent().getByteArrayExtra("Foto Insang"),0,getIntent().getByteArrayExtra("Foto Insang").length);
-
-
         btnHasil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -40,10 +36,6 @@ public class CloudActivity extends AppCompatActivity {
                 ByteArrayOutputStream bs1 = new ByteArrayOutputStream();
                 fotoMata.compress(Bitmap.CompressFormat.PNG, 100, bs1);
                 intent.putExtra("Foto Mata", bs1.toByteArray());
-
-                ByteArrayOutputStream bs2 = new ByteArrayOutputStream();
-                fotoInsang.compress(Bitmap.CompressFormat.PNG, 100, bs2);
-                intent.putExtra("Foto Insang", bs2.toByteArray());
 
                 startActivity(intent);
             }

@@ -50,33 +50,6 @@
                 android:layout_gravity="center"/>
 
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="10dp">
-
-            <ImageView
-                android:id="@+id/imvFotoInsang"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:background="#9C9B9B"
-                android:layout_gravity="center"/>
-
-            <Button
-                android:id="@+id/btnAmbilFotoInsang"
-                android:layout_width="180dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:background="@drawable/example_one"
-                android:text="Ambil FOTO INSANG"
-                android:textColor="@color/putih"
-                android:textSize="16sp"
-                android:layout_gravity="center"/>
-
-        </LinearLayout>
-
     </LinearLayout>
 
     <Button

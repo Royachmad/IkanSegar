@@ -20,13 +20,12 @@ import java.io.IOException;
 
 public class proses extends AppCompatActivity {
 
-    Button btnAmbilFotoInsang, btnAmbilFotoMata, btnProses;
-    ImageView imvGambarInsang, imvGambarMata;
+    Button btnAmbilFotoMata, btnProses;
+    ImageView imvGambarMata;
     static final int REQUEST_IMAGE_CAPTURE = 1;
-    int flag = 0, cekMata = 0, cekInsang = 0;
-    Bitmap fotoInsang, fotoMata;
+    int flag = 0, cekMata = 0;
+    Bitmap fotoMata;
     final int PIC_CROP = 2;
-    private Uri picUriFotoMata;
 
 
     @Override
@@ -35,10 +34,8 @@ public class proses extends AppCompatActivity {
         setContentView(R.layout.activity_proses);
 
         btnAmbilFotoMata = findViewById(R.id.btnAmbilFotoMata);
-        btnAmbilFotoInsang = findViewById(R.id.btnAmbilFotoInsang);
         btnProses = findViewById(R.id.btnProsesFoto);
         imvGambarMata = findViewById(R.id.imvFotoMata);
-        imvGambarInsang =findViewById(R.id.imvFotoInsang);
 
         btnAmbilFotoMata.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,36 +48,16 @@ public class proses extends AppCompatActivity {
             }
         });
 
-        btnAmbilFotoInsang.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                flag = 2;
-                Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-                    startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
-                }
-            }
-        });
-
         btnProses.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(cekInsang == 1 && cekMata == 1){
-//                 Toast.makeText(getApplicationContext(), "Sudah Semua.", Toast.LENGTH_SHORT).show();
+                if(cekMata == 1){
                     Intent intent = new Intent(getApplicationContext(), CloudActivity.class);
                     ByteArrayOutputStream bs1 = new ByteArrayOutputStream();
                     fotoMata.compress(Bitmap.CompressFormat.PNG, 100, bs1);
                     intent.putExtra("Foto Mata", bs1.toByteArray());
 
-                    ByteArrayOutputStream bs2 = new ByteArrayOutputStream();
-                    fotoInsang.compress(Bitmap.CompressFormat.PNG, 100, bs2);
-                    intent.putExtra("Foto Insang", bs2.toByteArray());
-
                     startActivity(intent);
-                }else if(cekInsang == 0 && cekMata == 0){
-                    Toast.makeText(getApplicationContext(), "Foto Insang dan Mata Belum Ada.", Toast.LENGTH_SHORT).show();
-                }else if(cekInsang == 0){
-                    Toast.makeText(getApplicationContext(), "Foto Insang Belum Ada.", Toast.LENGTH_SHORT).show();
                 }else if(cekMata == 0){
                     Toast.makeText(getApplicationContext(), "Foto Mata Belum Ada.", Toast.LENGTH_SHORT).show();
                 }
@@ -90,32 +67,6 @@ public class proses extends AppCompatActivity {
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
-//        if (flag == 1) {
-//            if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-//                Bundle extras = data.getExtras();
-//                final Bitmap imageBitmap = (Bitmap) extras.get("data");
-//                Uri imageuri = getImageUri(getApplicationContext(),imageBitmap);
-////                Toast.makeText(getApplicationContext(), imageuri.toString(),Toast.LENGTH_LONG).show();
-//                performCrop(imageuri, flag);
-////                Bundle extras = data.getExtras();
-////                final Bitmap imageBitmap = (Bitmap) extras.get("data");
-////                imvGambarMata.setImageBitmap(imageBitmap);
-////                fotoMata = imageBitmap;
-////                cekMata = 1;
-//        }else if(requestCode == PIC_CROP){
-//                Bundle extras = data.getExtras();
-//                Bitmap thePic = extras.getParcelable("data");
-//                Uri imageuri = getImageUri(getApplicationContext(), thePic);
-////                Toast.makeText(getApplicationContext(), imageuri.toString(),Toast.LENGTH_LONG).show();
-//                Log.e("Log Sekarang URl :", imageuri.toString());
-////                imvGambarMata.setImageBitmap(thePic);
-//            }
-//        }else if(flag == 2){
-//            if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-//
-//            }
-//        }
 
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
@@ -129,12 +80,6 @@ public class proses extends AppCompatActivity {
                 imvGambarMata.setImageBitmap(thePic);
                 fotoMata = thePic;
                 cekMata = 1;
-                flag = 0;
-            }
-            else if(flag == 2){
-                imvGambarInsang.setImageBitmap(thePic);
-                fotoInsang = thePic;
-                cekInsang = 1;
                 flag = 0;
             }
         };
